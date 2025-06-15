@@ -6,7 +6,7 @@ namespace Utils
     {
         public static T Instance { get; private set; }
         
-        public void SetInstance(T instance)
+        public static void SetInstance(T instance)
         {
             if (Instance == null)
             {

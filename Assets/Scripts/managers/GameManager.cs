@@ -1,3 +1,5 @@
+using System;
+using Model;
 using UnityEngine;
 using Utils;
 
@@ -8,7 +10,18 @@ namespace managers
         [SerializeField] public int SpawnObjectCountInASecond = 1;
         [SerializeField] private string pooledObjectId = "Cube";
         private float spawnTimer = 0f;
-        
+        private PlayerModel playerModel;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            HealthService.SetInstance(new  HealthService());
+            playerModel = new  PlayerModel()
+            {
+                Health = 100 // Initial health value
+            };
+        }
+
         private void Update()
         {
             spawnTimer += Time.deltaTime;
@@ -19,6 +32,14 @@ namespace managers
                 {
                     SpawnObject.Instance.Spawn(pooledObjectId);
                 }
+            }
+        }
+        
+        private void OnGUI()
+        {
+            if (GUILayout.Button("Change Health"))
+            {
+                playerModel.Health -= 10;
             }
         }
     }
