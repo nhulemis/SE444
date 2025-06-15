@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPool : MonoSingleton<ObjectPool>
 {
     public PooledObject[] objectsToPool;
     
